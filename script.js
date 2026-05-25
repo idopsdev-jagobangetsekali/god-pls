@@ -59,13 +59,13 @@ sendBtn.addEventListener('click', () => {
         return;
     }
     if (!userEmail.includes('@') || !userEmail.includes('.')) {
-        alert("Email kurang valid 😿 cek lagi ya!");
+        alert("Email boong ni 😿 plsssss laaa!");
         return;
     }
     const dateObj = new Date(selectedDate);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateObj.toLocaleDateString('id-ID', options);
-    const detailText = `📅 ${formattedDate} ⏰ ${selectedTime} 📧 dikirim ke ${userEmail}`;
+    const detailText = `${formattedDate} ${selectedTime} dikirim ke ${userEmail}`;
     
     console.log(`DATA KENCAN: ${formattedDate} jam ${selectedTime} ke email ${userEmail}`);
     simulateSendEmail(userEmail, formattedDate, selectedTime);
@@ -76,5 +76,5 @@ sendBtn.addEventListener('click', () => {
 });
 
 function simulateSendEmail(email, date, time) {
-    alert(`💌 Siap! undangan jalan-jalan sudah dikirim ke ${email}\n📆 ${date} jam ${time}\nCek email (simulasi) dan siap-siap jalan! 🐱✨`);
+    alert(`Siap! Langsungggg kita gas ${email}\n${date} jam ${time}\nCek email (simulasi) dan kita mainn! 🐱✨`);
 }
