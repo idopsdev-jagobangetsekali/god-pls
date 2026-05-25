@@ -78,7 +78,7 @@ sendBtn.addEventListener('click', async () => {
     await sendPushNotification('AKHIRNYA KITA HARUS MAINN! 🐱', `${formattedDate} jam ${selectedTime} - Email: ${userEmail}`);
     
     try {
-        await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        await emailjs.send("service_chjwzrw", "template_tc98zsw", {
             to_email: userEmail,
             date: formattedDate,
             time: selectedTime,
