@@ -60,37 +60,39 @@ sendBtn.addEventListener('click', async () => {
     const selectedDate = datePicker.value;
     const selectedTime = timePicker.value;
     const userEmail = emailInput.value.trim();
+    
     if (!selectedDate || !selectedTime || !userEmail) {
-        alert("Isi tanggal, jam, dan email LANNN! 😽");
+        alert("Isi tanggal, jam, dan email dulu ya! 😽");
         return;
     }
+    
     if (!userEmail.includes('@') || !userEmail.includes('.')) {
-        alert("Email salah niii 😿 cek lagi dongg!");
+        alert("Email salah nih😿 cek lagi ya!");
         return;
     }
+    
     const dateObj = new Date(selectedDate);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateObj.toLocaleDateString('id-ID', options);
-    const detailText = `${formattedDate} ${selectedTime}`;
     
-    await sendPushNotification('AKHIRNYA MAINNN!!! 🐱', `${detailText} - Email: ${userEmail}`);
+    await sendPushNotification('AKHIRNYA KITA HARUS MAINN! 🐱', `${formattedDate} jam ${selectedTime} - Email: ${userEmail}`);
     
-    alert(`Siap! undangan mainn sudah masuk ke ${userEmail}\n${detailText}\n`);
-
     try {
-        await emailjs.send("service_chjwzrw", "template_tc98zsw", {
+        await emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
             to_email: userEmail,
             date: formattedDate,
             time: selectedTime,
+            message: `WULANN GAS KITA MAIN ${formattedDate} jam ${selectedTime}. Siap-siap ya! 🐱💖`
         });
-        alert("✅ Email undangan sudah terkirim real!");
+        alert("Email undangan sudah terkirim YAAA! Cek inbox/spam YAA 😻");
     } catch(error) {
-        alert("Gagal kirim email, tapi notifikasi push tetap muncul");
+        console.error("Email error:", error);
+        alert("Gagal kirim email real, tapi notifikasi push sudah muncul & data tersimpan. Cek koneksi atau setting EmailJS!");
     }
     
     calendarCard.classList.add('hidden');
     successCard.classList.remove('hidden');
-    document.getElementById('successDetail').innerHTML = `Jalan-jalan tanggal ${formattedDate} jam ${selectedTime} <br> 🐾🐾`;
+    document.getElementById('successDetail').innerHTML = `Jalan-jalan tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Notifikasi push sudah muncul & email ${userEmail} sedang diproses! 🐾`;
 });
 
 if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
