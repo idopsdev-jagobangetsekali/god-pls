@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    cursor: pointer;
+}
+
+.container {
+    width: 100%;
+    max-width: 550px;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.card, .calendar-card, .success-card {
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 60px 60px 80px 80px;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+    border: 2px solid #ffb7c5;
+}
+
+.cat-gif img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #ffe0e7;
+    padding: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-12px); }
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #c53a5f;
+    margin: 20px 0;
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+    font-family: inherit;
+}
+
+.btn-yes {
+    background-color: #4caf50;
+    color: white;
+    transform: scale(1);
+    z-index: 10;
+}
+
+.btn-yes:hover {
+    background-color: #45a049;
+    transform: scale(1.02);
+}
+
+.btn-no {
+    background-color: #f44336;
+    color: white;
+    transition: all 0.2s cubic-bezier(0.34, 1.2, 0.8, 1);
+}
+
+.emoji-float {
+    font-size: 2rem;
+    letter-spacing: 10px;
+    margin-top: 25px;
+    animation: floatText 2s infinite;
+}
+
+@keyframes floatText {
+    0% { transform: rotate(0deg) translateY(0px);}
+    50% { transform: rotate(5deg) translateY(-6px);}
+    100% { transform: rotate(0deg) translateY(0px);}
+}
+
+.hidden {
+    display: none;
+}
+
+.date-input, .time-input, .email-input {
+    width: 85%;
+    padding: 14px 18px;
+    margin: 12px auto;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    border: 2px solid #ffb3c6;
+    background: #fff9fb;
+    font-family: monospace;
+    text-align: center;
+    display: block;
+}
+
+.btn-send {
+    background: #ff85a1;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-send:hover {
+    background: #ff5e82;
+    transform: scale(0.97);
+}
+
+.success-card p {
+    font-size: 1.3rem;
+    background: #fce4ec;
+    padding: 15px;
+    border-radius: 50px;
+    margin: 20px;
+}
+
+.exploding-emoji {
+    font-size: 3rem;
+    animation: explode 1.2s infinite alternate;
+}
+
+@keyframes explode {
+    from {transform: scale(1); opacity: 0.7;}
+    to {transform: scale(1.2); opacity: 1;}
+}
+
+@media (max-width: 500px) {
+    .btn { font-size: 1.2rem; padding: 10px 22px;}
+    .title { font-size: 1.4rem; }
+}

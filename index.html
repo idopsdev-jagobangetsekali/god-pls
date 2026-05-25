@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Ajak Jalan Yuk! 🐱</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="card" id="mainCard">
+            <div class="cat-gif">
+                <img src="https://media.tenor.com/9GooJZ2F-_EAAAAj/peach-cat.gif" alt="cat dance" id="catAnim">
+            </div>
+            <h1 class="title">🌸 Mau jalan-jalan bareng aku? 🌸</h1>
+            <div class="button-group">
+                <button class="btn btn-yes" id="yesBtn">YES 🎉</button>
+                <button class="btn btn-no" id="noBtn">NO 😿</button>
+            </div>
+            <div class="emoji-float">😻✨🐾💖🐈</div>
+        </div>
+
+        <div class="calendar-card hidden" id="calendarCard">
+            <div class="cat-gif">
+                <img src="https://media.tenor.com/9qKq0YkNuLIAAAAj/cat-smile.gif" alt="happy cat" id="catHappy">
+            </div>
+            <h2>🎀 Pilih tanggal & jam 🎀</h2>
+            <input type="date" id="datePicker" class="date-input">
+            <input type="time" id="timePicker" class="time-input">
+            <input type="email" id="emailInput" placeholder="Email kamu 📧" class="email-input" required>
+            <button class="btn-send" id="sendBtn">Kirim & Janjian Yuk! 💌</button>
+            <div class="emoji-float">🗓️⏰📧✨</div>
+        </div>
+
+        <div class="success-card hidden" id="successCard">
+            <div class="cat-gif">
+                <img src="https://media.tenor.com/1vU6iDnBvJEAAAAj/cat-kiss.gif" alt="love cat">
+            </div>
+            <h2>Yeay! Siap jalan-jalan! 🥳🎉</h2>
+            <p id="successDetail"></p>
+            <div class="exploding-emoji">🐱💖🎈🍦🌈☁️</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
