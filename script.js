@@ -9,15 +9,13 @@ const datePicker = document.getElementById('datePicker');
 const timePicker = document.getElementById('timePicker');
 const emailInput = document.getElementById('emailInput');
 
-let originalYesWidth, originalNoWidth, originalYesPad, originalNoPad;
+let originalYesWidth, originalNoWidth;
 
 function storeOriginalSizes() {
     const yesStyles = window.getComputedStyle(yesBtn);
     const noStyles = window.getComputedStyle(noBtn);
     originalYesWidth = parseFloat(yesStyles.width);
     originalNoWidth = parseFloat(noStyles.width);
-    originalYesPad = parseFloat(yesStyles.paddingLeft) + parseFloat(yesStyles.paddingRight);
-    originalNoPad = parseFloat(noStyles.paddingLeft) + parseFloat(noStyles.paddingRight);
 }
 storeOriginalSizes();
 
@@ -26,9 +24,6 @@ noBtn.addEventListener('click', () => {
     if (noClickCount <= 5) {
         const shrinkFactor = 1 - (noClickCount * 0.16);
         const growFactor = 1 + (noClickCount * 0.28);
-        let newNoWidth = originalNoWidth * shrinkFactor;
-        let newYesWidth = originalYesWidth * growFactor;
-        if (newNoWidth < 15) newNoWidth = 15;
         noBtn.style.transform = `scale(${Math.max(0.2, shrinkFactor)})`;
         yesBtn.style.transform = `scale(${growFactor})`;
         yesBtn.style.fontSize = `${1.4 + noClickCount * 0.2}rem`;
@@ -43,38 +38,63 @@ noBtn.addEventListener('click', () => {
 yesBtn.addEventListener('click', () => {
     mainCard.classList.add('hidden');
     calendarCard.classList.remove('hidden');
-    document.getElementById('catAnim').src = "https://media.tenor.com/Fm2CpsP7BrEAAAAj/cat-jump.gif";
+    document.getElementById('catAnim').src = "https://media.tenor.com/Qk6C4KsB6FkAAAAj/cat-happy.gif";
     const today = new Date().toISOString().split('T')[0];
     datePicker.min = today;
     if(!datePicker.value) datePicker.value = today;
     if(!timePicker.value) timePicker.value = "15:00";
 });
 
-sendBtn.addEventListener('click', () => {
+async function sendPushNotification(title, body) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(title, { body, icon: 'https://cdn-icons-png.flaticon.com/512/1998/1998628.png', requireInteraction: true });
+    } else if ('Notification' in window && Notification.permission !== 'denied') {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+            new Notification(title, { body, icon: 'https://cdn-icons-png.flaticon.com/512/1998/1998628.png' });
+        }
+    }
+}
+
+sendBtn.addEventListener('click', async () => {
     const selectedDate = datePicker.value;
     const selectedTime = timePicker.value;
     const userEmail = emailInput.value.trim();
     if (!selectedDate || !selectedTime || !userEmail) {
-        alert("Isi tanggal, jam, dan email dulu ya! 😽");
+        alert("Isi tanggal, jam, dan email LANNN! 😽");
         return;
     }
     if (!userEmail.includes('@') || !userEmail.includes('.')) {
-        alert("Email boong ni 😿 plsssss laaa!");
+        alert("Email salah niii 😿 cek lagi dongg!");
         return;
     }
     const dateObj = new Date(selectedDate);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateObj.toLocaleDateString('id-ID', options);
-    const detailText = `${formattedDate} ${selectedTime} dikirim ke ${userEmail}`;
+    const detailText = `${formattedDate} ${selectedTime}`;
     
-    console.log(`DATA KENCAN: ${formattedDate} jam ${selectedTime} ke email ${userEmail}`);
-    simulateSendEmail(userEmail, formattedDate, selectedTime);
+    await sendPushNotification('AKHIRNYA MAINNN!!! 🐱', `${detailText} - Email: ${userEmail}`);
+    
+    alert(`Siap! undangan mainn sudah masuk ke ${userEmail}\n${detailText}\n`);
+
+    try {
+        await emailjs.send("service_chjwzrw", "template_tc98zsw", {
+            to_email: userEmail,
+            date: formattedDate,
+            time: selectedTime,
+        });
+        alert("✅ Email undangan sudah terkirim real!");
+    } catch(error) {
+        alert("Gagal kirim email, tapi notifikasi push tetap muncul");
+    }
     
     calendarCard.classList.add('hidden');
     successCard.classList.remove('hidden');
-    document.getElementById('successDetail').innerHTML = `Jalan-jalan tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Konfirmasi sudah dikirim ke email mu! 🐾`;
+    document.getElementById('successDetail').innerHTML = `Jalan-jalan tanggal ${formattedDate} jam ${selectedTime} <br> 🐾🐾`;
 });
 
-function simulateSendEmail(email, date, time) {
-    alert(`Siap! Langsungggg kita gas ${email}\n${date} jam ${time}\nCek email (simulasi) dan kita mainn! 🐱✨`);
+if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+    setTimeout(() => {
+        Notification.requestPermission();
+    }, 1000);
 }
