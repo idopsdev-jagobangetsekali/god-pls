@@ -287,3 +287,20 @@ body {
         min-height: 50px;
     }
 }
+
+.btn-send {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+.calendar-card {
+    position: relative;
+    z-index: 2;
+}
+
+.calendar-card .btn-send {
+    position: relative;
+    z-index: 30 !important;
+}

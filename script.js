@@ -56,7 +56,13 @@ async function sendPushNotification(title, body) {
     }
 }
 
-sendBtn.addEventListener('click', async () => {
+// 🔥 PERBAIKAN: Gunakan 'click' dan 'touchstart' untuk mobile
+function handleSendClick(e) {
+    e.preventDefault(); // Mencegah default behavior
+    e.stopPropagation();
+    
+    console.log("Tombol Send diklik!"); // Debug di console
+    
     const selectedDate = datePicker.value;
     const selectedTime = timePicker.value;
     const userEmail = emailInput.value.trim();
@@ -75,16 +81,20 @@ sendBtn.addEventListener('click', async () => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateObj.toLocaleDateString('id-ID', options);
     
-    await sendPushNotification('AKHIRNYA KITA MAINN! 🐱', `${formattedDate} jam ${selectedTime} - Email: ${userEmail}`);
+    sendPushNotification('AKHIRNYA KITA MAINN! 🐱', `${formattedDate} jam ${selectedTime} - Email: ${userEmail}`);
     
     try {
-        await emailjs.send("service_chjwzrw", "template_tc98zsw", {
+        emailjs.send("service_chjwzrw", "template_tc98zsw", {
             to_email: userEmail,
             date: formattedDate,
             time: selectedTime,
             message: `WULANN SPG GAS KITA MAIN ${formattedDate} jam ${selectedTime}. Jangan boong!! 🐱💖`
+        }).then(() => {
+            alert("Email undangan sudah terkirim YAAA! Cek inbox/spam YAA 😻");
+        }).catch((error) => {
+            console.error("Email error:", error);
+            alert("Gagal kirim email real, tapi notifikasi push sudah muncul & data tersimpan. Cek koneksi atau setting EmailJS!");
         });
-        alert("Email undangan sudah terkirim YAAA! Cek inbox/spam YAA 😻");
     } catch(error) {
         console.error("Email error:", error);
         alert("Gagal kirim email real, tapi notifikasi push sudah muncul & data tersimpan. Cek koneksi atau setting EmailJS!");
@@ -93,6 +103,24 @@ sendBtn.addEventListener('click', async () => {
     calendarCard.classList.add('hidden');
     successCard.classList.remove('hidden');
     document.getElementById('successDetail').innerHTML = `Until we meet again darling tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Coba cek email ${userEmail}, Biar keliatan formal Dee! 🐾`;
+}
+
+// 🔥 PASANG EVENT LISTENER UNTUK CLICK DAN TOUCH
+if (sendBtn) {
+    sendBtn.addEventListener('click', handleSendClick);
+    sendBtn.addEventListener('touchstart', handleSendClick, { passive: false });
+    console.log("Event listener terpasang untuk tombol Send"); // Debug
+} else {
+    console.error("Tombol Send tidak ditemukan!");
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const checkBtn = document.getElementById('sendBtn');
+    if (checkBtn) {
+        console.log("Tombol Send ditemukan di DOM");
+    } else {
+        console.error("Tombol Send TIDAK ditemukan di DOM!");
+    }
 });
 
 if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
