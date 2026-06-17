@@ -92,7 +92,7 @@ sendBtn.addEventListener('click', async () => {
     
     calendarCard.classList.add('hidden');
     successCard.classList.remove('hidden');
-    document.getElementById('successDetail').innerHTML = `Jalan-jalan tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Notifikasi push sudah muncul & email ${userEmail} sedang diproses! 🐾`;
+    document.getElementById('successDetail').innerHTML = `Until we meet again darling tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Coba cek email ${userEmail}, Biar keliatan formal Dee! 🐾`;
 });
 
 if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
