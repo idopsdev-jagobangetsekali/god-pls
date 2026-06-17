@@ -8,14 +8,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="flower-bg">
+        <img src="images/sunflower1.png" class="flower flower-1" alt="flower">
+        <img src="images/sunflower2.png" class="flower flower-2" alt="flower">
+        <img src="images/sunflower3.png" class="flower flower-3" alt="flower">
+        <img src="images/flower1.png" class="flower flower-4" alt="flower">
+        <img src="images/flower2.png" class="flower flower-5" alt="flower">
+        <img src="images/flower3.png" class="flower flower-6" alt="flower">
+        <img src="images/sunflower1.png" class="flower flower-7" alt="flower">
+        <img src="images/sunflower2.png" class="flower flower-8" alt="flower">
+        <img src="images/flower1.png" class="flower flower-9" alt="flower">
+        <img src="images/sunflower3.png" class="flower flower-10" alt="flower">
+        <img src="images/flower2.png" class="flower flower-11" alt="flower">
+        <img src="images/sunflower1.png" class="flower flower-12" alt="flower">
+    </div>
+
     <div class="container" id="app">
         <div class="card" id="mainCard">
             <div class="cat-gif">
-                <img src="https://drive.google.com/uc?export=view&id=1X7DQGpV3Ww_cnsuZEyMyYNdBvSeFYXN4" alt="cat dance" id="catAnim">
+                <img src="images/cat.jpeg" alt="cat dance" id="catAnim">
             </div>
-            <h1 class="title">🌸Would you go out with me Wulannn?🌸</h1>
+            <h1 class="title">🌸 Would you go out with me Wulannn? 🌸</h1>
             <div class="button-group">
-                <button class="btn btn-yes" id="yesBtn">YES 💖</button>
+                <button class="btn btn-yes" id="yesBtn">YES! 💖</button>
                 <button class="btn btn-no" id="noBtn">NO 😿</button>
             </div>
             <div class="emoji-float">🌸🌸🌸🌸🌸🌸🌸</div>
@@ -23,19 +38,19 @@
 
         <div class="calendar-card hidden" id="calendarCard">
             <div class="cat-gif">
-                <img src="https://drive.google.com/uc?export=view&id=1X7DQGpV3Ww_cnsuZEyMyYNdBvSeFYXN4" alt="happy cat" id="catHappy">
+                <img src="images/cat.jpeg" alt="happy cat" id="catHappy">
             </div>
             <h2>🎀💖 Se free dan se nyaman kamu ya 💖🎀</h2>
             <input type="date" id="datePicker" class="date-input">
             <input type="time" id="timePicker" class="time-input">
-            <input type="email" id="emailInput" placeholder="Email kamu cantikk" class="email-input" required>
+            <input type="email" id="emailInput" placeholder="Email kamu cantik" class="email-input" required>
             <button class="btn-send" id="sendBtn">Langsung kita gasss</button>
             <div class="emoji-float">🌸🌸🌸🌸🌸🌸🌸</div>
         </div>
 
         <div class="success-card hidden" id="successCard">
             <div class="cat-gif">
-                <img src="https://drive.google.com/uc?export=view&id=1X7DQGpV3Ww_cnsuZEyMyYNdBvSeFYXN4" alt="love cat">
+                <img src="images/cat.jpeg" alt="love cat">
             </div>
             <h2>Yeay!!! I wont let you down WULANN! 🥳</h2>
             <p id="successDetail"></p>
@@ -46,7 +61,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("l60ADAUczWDb8Ckk-");
+            emailjs.init("l60ADAUczWDb8Ckk");
         })();
     </script>
     <script src="script.js"></script>

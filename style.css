@@ -14,13 +14,58 @@ body {
     align-items: center;
     overflow-x: hidden;
     cursor: pointer;
+    position: relative;
 }
 
+/* ===== BACKGROUND BUNGA ===== */
+.flower-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.flower {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    opacity: 0.7;
+    animation: floatFlower 6s ease-in-out infinite alternate;
+}
+
+.flower-1 { top: 5%; left: 50%; width: 140px; height: 140px; animation-delay: 0s; }
+.flower-2 { top: 5%; right: 2%; width: 110px; height: 110px; animation-delay: 0.8s; }
+.flower-3 { top: 5%; left: 20%; width: 160px; height: 160px; animation-delay: 1.6s; }
+.flower-4 { top: 70%; right: 1%; width: 130px; height: 130px; animation-delay: 2.4s; }
+.flower-5 { bottom: 7%; left: 25%; width: 150px; height: 150px; animation-delay: 0.4s; }
+.flower-6 { bottom: 10%; right: 3%; width: 120px; height: 120px; animation-delay: 1.2s; }
+.flower-7 { top: 30%; left: 6%; width: 100px; height: 100px; animation-delay: 2.0s; }
+.flower-8 { top: 55%; right: 5%; width: 140px; height: 140px; animation-delay: 0.2s; }
+.flower-9 { bottom: 35%; left: 2%; width: 110px; height: 110px; animation-delay: 1.8s; }
+.flower-10 { top: 8%; left: 2%; width: 90px; height: 90px; animation-delay: 2.6s; }
+.flower-11 { bottom: 5%; right: 25%; width: 130px; height: 130px; animation-delay: 0.6s; }
+.flower-12 { top: 85%; left: 8%; width: 100px; height: 100px; animation-delay: 1.4s; }
+
+@keyframes floatFlower {
+    0% { transform: translateY(0px) rotate(0deg) scale(1); }
+    33% { transform: translateY(-20px) rotate(10deg) scale(1.05); }
+    66% { transform: translateY(10px) rotate(-10deg) scale(0.95); }
+    100% { transform: translateY(-15px) rotate(5deg) scale(1.02); }
+}
+
+/* ===== CONTAINER ===== */
 .container {
     width: 100%;
     max-width: 550px;
     padding: 20px;
     perspective: 1000px;
+    position: relative;
+    z-index: 1;
 }
 
 .card, .calendar-card, .success-card {
@@ -37,7 +82,7 @@ body {
 .cat-gif img {
     width: 180px;
     height: 180px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 50%;
     background: #ffe0e7;
     padding: 15px;
@@ -169,4 +214,8 @@ body {
 @media (max-width: 500px) {
     .btn { font-size: 1.2rem; padding: 10px 22px;}
     .title { font-size: 1.4rem; }
+    .flower { width: 80px; height: 80px; }
+    .flower-1 { width: 100px; height: 100px; }
+    .flower-3 { width: 110px; height: 110px; }
+    .flower-5 { width: 100px; height: 100px; }
 }
