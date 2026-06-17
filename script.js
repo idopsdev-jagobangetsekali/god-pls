@@ -102,10 +102,9 @@ function handleSendClick(e) {
     
     calendarCard.classList.add('hidden');
     successCard.classList.remove('hidden');
-    document.getElementById('successDetail').innerHTML = `Until we meet again darling tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Coba cek email ${userEmail}, Biar keliatan formal Dee! 🐾`;
+    document.getElementById('successDetail').innerHTML = `Until we meet again darling tanggal ${formattedDate} jam ${selectedTime} <br> 🐾 Coba cek email, Biar keliatan formal Dee! 🐾`;
 }
 
-// 🔥 PASANG EVENT LISTENER UNTUK CLICK DAN TOUCH
 if (sendBtn) {
     sendBtn.addEventListener('click', handleSendClick);
     sendBtn.addEventListener('touchstart', handleSendClick, { passive: false });
