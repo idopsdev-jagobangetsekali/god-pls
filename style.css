@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     user-select: none;
+    -webkit-tap-highlight-color: transparent; /* 🔥 HILANGKAN EFEK BIRU SAAT KLIK DI MOBILE */
 }
 
 body {
@@ -15,6 +16,7 @@ body {
     overflow-x: hidden;
     cursor: pointer;
     position: relative;
+    touch-action: manipulation; /* 🔥 OPTIMASI UNTUK TOUCH */
 }
 
 /* ===== BACKGROUND BUNGA ===== */
@@ -24,7 +26,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* 🔥 GAMBAR TIDAK MENANGKAP KLIK */
+    pointer-events: none;
     z-index: 0;
     overflow: hidden;
 }
@@ -36,7 +38,7 @@ body {
     object-fit: contain;
     opacity: 0.7;
     animation: floatFlower 6s ease-in-out infinite alternate;
-    pointer-events: none; /* 🔥 TAMBAHKAN INI */
+    pointer-events: none;
 }
 
 .flower-1 { top: 5%; left: 50%; width: 140px; height: 140px; animation-delay: 0s; }
@@ -126,8 +128,10 @@ body {
     transition: all 0.25s ease;
     box-shadow: 0 5px 0 rgba(0,0,0,0.1);
     font-family: inherit;
-    position: relative; 
-    z-index: 10; 
+    position: relative;
+    z-index: 10;
+    touch-action: manipulation; /* 🔥 OPTIMASI UNTUK TOUCH */
+    -webkit-tap-highlight-color: transparent; /* 🔥 HILANGKAN EFEK BIRU */
 }
 
 .btn-yes {
@@ -176,8 +180,10 @@ body {
     font-family: monospace;
     text-align: center;
     display: block;
-    position: relative; 
-    z-index: 10; 
+    position: relative;
+    z-index: 10;
+    touch-action: manipulation; /* 🔥 OPTIMASI UNTUK TOUCH */
+    -webkit-tap-highlight-color: transparent; /* 🔥 HILANGKAN EFEK BIRU */
 }
 
 .btn-send {
@@ -191,8 +197,10 @@ body {
     margin-top: 20px;
     cursor: pointer;
     transition: 0.2s;
-    position: relative; 
-    z-index: 10; 
+    position: relative;
+    z-index: 10;
+    touch-action: manipulation; /* 🔥 OPTIMASI UNTUK TOUCH */
+    -webkit-tap-highlight-color: transparent; /* 🔥 HILANGKAN EFEK BIRU */
 }
 
 .btn-send:hover {
@@ -218,11 +226,47 @@ body {
     to {transform: scale(1.2); opacity: 1;}
 }
 
+/* ===== MEDIA QUERY UNTUK MOBILE ===== */
 @media (max-width: 500px) {
-    .btn { font-size: 1.2rem; padding: 10px 22px;}
+    .btn { 
+        font-size: 1.4rem; 
+        padding: 14px 32px; /* 🔥 PERBESAR AREA SENTUH */
+        min-width: 120px; /* 🔥 PERBESAR TOMBOL */
+    }
     .title { font-size: 1.4rem; }
     .flower { width: 80px; height: 80px; }
     .flower-1 { width: 100px; height: 100px; }
     .flower-3 { width: 110px; height: 110px; }
     .flower-5 { width: 100px; height: 100px; }
+    
+    .date-input, .time-input, .email-input {
+        padding: 16px 18px; /* 🔥 PERBESAR INPUT */
+        font-size: 1.2rem;
+        width: 90%;
+    }
+    
+    .btn-send {
+        padding: 16px 32px;
+        font-size: 1.3rem;
+        width: 90%;
+    }
+    
+    .card, .calendar-card, .success-card {
+        padding: 25px 15px;
+    }
+}
+
+/* ===== UNTUK MOBILE DENGAN LAYAR SANGAT KECIL ===== */
+@media (max-width: 380px) {
+    .btn {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+        min-width: 100px;
+    }
+    .button-group {
+        gap: 15px;
+    }
+    .title {
+        font-size: 1.2rem;
+    }
 }
