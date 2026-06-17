@@ -75,14 +75,14 @@ sendBtn.addEventListener('click', async () => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = dateObj.toLocaleDateString('id-ID', options);
     
-    await sendPushNotification('AKHIRNYA KITA HARUS MAINN! 🐱', `${formattedDate} jam ${selectedTime} - Email: ${userEmail}`);
+    await sendPushNotification('AKHIRNYA KITA MAINN! 🐱', `${formattedDate} jam ${selectedTime} - Email: ${userEmail}`);
     
     try {
         await emailjs.send("service_chjwzrw", "template_tc98zsw", {
             to_email: userEmail,
             date: formattedDate,
             time: selectedTime,
-            message: `WULANN GAS KITA MAIN ${formattedDate} jam ${selectedTime}. Siap-siap ya! 🐱💖`
+            message: `WULANN SPG GAS KITA MAIN ${formattedDate} jam ${selectedTime}. Jangan boong!! 🐱💖`
         });
         alert("Email undangan sudah terkirim YAAA! Cek inbox/spam YAA 😻");
     } catch(error) {
